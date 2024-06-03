@@ -5,6 +5,8 @@ bringing in what we have learned both the first and second semester.
 
 We were free to choose what to make, as long as we fulfill all the technical requirements, 
 and so I have chosen to make a Basic Secure Automatic Door Admission Security System('BadAss')
+Which is a security system that in hindsight will make admins see who and when people have logged-in,
+and restrict times when you can log in to the system. 
 
 I have to use only HTML, CSS and Javascript for the coding of the project - webpack as a bundler
 and firebase authentication for login/logout function. I have to use minimum 1 API, include logic
