@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginContainer = document.querySelector('.login-container');
     const signupContainer = document.querySelector('.signup-container');
     const signupRedirection = document.querySelector('.signup-redirection');
-    const signupButton = document.querySelector('.signup-button');
+    /* const signupButton = document.querySelector('.signup-button'); */
     const landingPage = document.querySelector('.landing-page-container');
     const logoutButton = document.querySelector('.logout-button');
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     signupForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             const firstname = document.querySelector('#firstname-input').value;
-            const surname = document.querySelector('#surname-input').value;
+            const lastname = document.querySelector('#lastname-input').value;
             const email = document.querySelector('#email-signup-input').value;
             const password = document.querySelector('#password-signup-input').value;
 
@@ -40,17 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!emailRegex.test(email)) {
             console.error('Invalid email format.');
+            alert('Invalid email format.')
             return;
         }
         
         try {
-            await signup(firstname, surname, email, password);
+            await signup(firstname, lastname, email, password);
                 signupForm.reset();
                 signupContainer.style.display = 'none';
                 loginContainer.style.display = 'block';
+                alert('Sign-up successful!');
             }
             catch (error) {
                 console.log('Error signing up.', error.message);
+                alert('Error signing up.')
             };
         });
     
@@ -66,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!emailRegex.test(email)) {
             console.error('Invalid email format.');
+            alert('Invalid email format.')
             return;
         }
 
@@ -76,13 +80,23 @@ document.addEventListener('DOMContentLoaded', () => {
             landingPage.style.display = 'block';
         } catch (error) {
             console.error('Error logging in.', error.message);
+            alert('Error logging in.')
         }
     });
 
     
 
-    logoutButton.addEventListener('click', () => {
-        logout()
+    logoutButton.addEventListener('click', async () => {
+        try {
+            await logout();
+            loginForm.style.display = 'block';
+            landingPage.style.display = 'none';
+        } catch(error) {
+            console.log('Error logging out.', error.message);
+            alert('Error logging out.')
+        }
+    });
+        /* logout()
         .then(() => {
             loginForm.style.display = 'block';
             landingPage.style.display = 'none';
@@ -91,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Error logging out.', error.message);
         });
     });
-
+ */
     onAuthStateChanged(auth, (user) => {
         if (user) {
             loginContainer.style.display = 'none';

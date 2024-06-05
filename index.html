@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Final Project</title> <!-- mock title -->
+        <link rel="stylesheet" href="./css/reset.css">
+        <link rel="stylesheet" href="./css/styles.css">
+    </head>
+    <body>
+        <div class="logo-container">LOGO</div> <!-- adding logo later -->
+        <div class="login-container"> <!-- the login feature container -->
+            <h1 class="main-header">Welcome!</h1>
+            <form class="login-form">
+                <label for="email-input">E-mail</label>
+                <input type="email" placeholder="one@example.com" class="login-input" id="email-login-input" required>
+                <label for="password-input">Password</label>
+                <input type="password" placeholder="..." class="login-input" id="password-login-input" required>
+                <button class="login-button">Log in</button>
+            </form>
+            <p>Dont have an account?</p>
+            <button class="signup-redirection">Sign up here!</button>
+            
+        </div>
+        <div class="signup-container" style="display:none"> <!-- the signup feature container -->
+            <form class="signup-form">
+                <label for="name">Firstname:</label>
+                <input type="text" placeholder="Firstname" class="firstname-input" id="firstname-input" required>
+                <label for="lastname">lastname:</label>
+                <input type="text" placeholder="Lastname" class="lastname-input" id="lastname-input" required>
+                <label for="email-input">Email</label>
+                <input type="email" placeholder="one@example.com" class="email-signup-input" id="email-signup-input" required>
+                <label for="password-input"></label>
+                <input type="password" placeholder="..." class="password-signup-input" id="password-signup-input" required>
+                <button class="signup-button">Sign up</button>
+            </form>
+
+        </div>
+        <div class="landing-page-container" style="display:none"> <!-- the landing page container -->
+            <header class="landing-page-header">
+                <div class="landing-header-logo">LOGO</div>
+                <div class="landing-header-menu">Menu</div>
+                <div class="landing-header-namedisplay">Profile Name</div>
+                <button class="header-logout-button">Log out!</button>
+            </header>
+
+        </div>
+        <div></div>
+        <div></div>
+        <script src="./js/bundle.js"></script>
+    </body>
+</html>

@@ -1,21 +1,28 @@
 // auth javascript file
 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "./firebase";
 
-export function signup(firstname, surname, email, password) {
-    return createUserWithEmailAndPassword(auth, firstname, surname, email, password)
-    .then((userCredential) => {
-        console.log('User signed up:', userCredential.user);
-        // put the code for redirection here
-    })
+export async function signup(firstname, lastname, email, password) {
+    const auth = getAuth();
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        await updateProfile(user, {
+            displayName: `${firstname} ${lastname}`
+        });
+
+        return userCredential;
+    } catch (error) {
+        throw error;
+    }
 }
 
 export function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password) 
         .then((userCredential) => {
             console.log('Logged in:', userCredential.user);
-            // put the code for redirection here
         })
         .catch((error) => {
             console.error('Error logging in:', error);
