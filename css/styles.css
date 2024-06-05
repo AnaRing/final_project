@@ -4,27 +4,31 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 /* log-in styles */
 
-.logo-container img {
+.logo-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.logo-container img {
+    margin-left: 1.95rem;
     width: 70%;
-    height: 70%;
+    height: auto;
 }
 
 .login-content-container {
-    margin-top: 9.71875rem;
     margin-bottom: 9.71875rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 32.375rem;
+    width: 34.375rem;
     height: 36.4375rem;
     border-radius: 0.3125rem;
     background: var(--Dark-greenblue, #718F94);
@@ -41,6 +45,16 @@ body, html {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-top: 2.5rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 .login-form label {
@@ -49,10 +63,11 @@ body, html {
     align-items: center;
     color: #FFF;
     font-family: "Sans Serif Collection";
-    font-size: 20px;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-bottom: 1rem;
 }
 
 .login-input {
@@ -66,10 +81,14 @@ body, html {
     border: 0.0625rem solid #000;
     background: #D9D9D9;
     box-shadow: 0px 0.25rem 0.25rem 0px rgba(0, 0, 0, 0.25) inset;
+    margin-bottom: 2rem;
 }
 
 
 .login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 9.0625rem;
     height: 3.375rem;
     flex-shrink: 0;
@@ -97,6 +116,7 @@ p {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-bottom: 5rem;
 }
 
 /* sign-up styles */
@@ -116,19 +136,43 @@ p {
     box-shadow: 0px 0.25rem 0.25rem 0px rgba(0, 0, 0, 0.43);
 }
 
+.signup-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-family: "Sans Serif Collection";
+    font-size: 3.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 3.5rem;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;   
+}
+
 .signup-form label {
     display: flex;
     justify-content: center;
     align-items: center;
     color: #FFF;
     font-family: "Sans Serif Collection";
-    font-size: 20px;
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-bottom: 1rem;
 }
 
-.signup-form input {
+.firstname-input, .lastname-input,
+.email-signup-input, .password-signup-input {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,14 +183,31 @@ p {
     border: 0.0625rem solid #000;
     background: #D9D9D9;
     box-shadow: 0px 0.25rem 0.25rem 0px rgba(0, 0, 0, 0.25) inset;
+    margin-bottom: 1rem;
 }
 
 .signup-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 9.0625rem;
     height: 3.375rem;
     flex-shrink: 0;
     border-radius: 0.3125rem;
     background: var(--Greyblue, #545775);
+    margin-top: 1rem;
+}
+
+.login-redirection {
+    margin-top: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--Greyblue, #545775);
+    font-family: "Microsoft Sans Serif";
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 /* landing-page styles */
@@ -156,10 +217,12 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .landing-page-header {
-    width: 100%;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -167,14 +230,24 @@ p {
     background: var(--Greyblue, #545775);
     box-shadow: 0px 0.25rem 0.25rem 0px rgba(0, 0, 0, 0.25);
     padding: 0 1rem;
+    margin: 0;
 }
 
-.landing-header-logo,
 .landing-header-menu,
 .landing-header-namedisplay {
     color: white;
     font-family: "Sans Serif Collection";
     margin: 0 1rem;
+}
+
+.landing-header-logo {
+    display: flex;
+    align-items: center;
+}
+
+.landing-header-logo img {
+    max-width: 30%;
+    max-height: 30%;
 }
 
 .logout-button {

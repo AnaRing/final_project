@@ -15,10 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginContainer = document.querySelector('.login-container');
     const signupContainer = document.querySelector('.signup-container');
     const signupRedirection = document.querySelector('.signup-redirection');
-    /* const signupButton = document.querySelector('.signup-button'); */
     const landingPage = document.querySelector('.landing-page-container');
-    const logoutButton = document.querySelector('.logout-button');
-    const logoContainer = document.querySelector('.logo-container');
+    const logoutButton = document.querySelector('.header-logout-button');
+    const loginRedirection = document.querySelector('.login-redirection');
 
 
     // adding event listeners
@@ -58,6 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         });
     
+        loginRedirection.addEventListener ('click', () => {
+            signupContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+        });
             
 
     loginForm.addEventListener('submit', async (event) => {
@@ -105,13 +108,20 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch((error) => {
             console.log('Error logging out.', error.message);
         });
-    });
- */
+    }); */
+
     onAuthStateChanged(auth, (user) => {
         if (user) {
+            console.log('User object:', user)
+            const displayName = user.displayName;
+            document.querySelector('.landing-header-namedisplay').textContent = displayName;
+            console.log('Display name:', user);
+
             loginContainer.style.display = 'none';
             landingPage.style.display = 'block';
         } else {
+            document.querySelector('.landing-header-namedisplay').textContent = '';
+
             loginContainer.style.display = 'block';
             landingPage.style.display = 'none';
         }

@@ -26,27 +26,31 @@
             <button class="signup-redirection">Sign up here!</button>
             </div>
         </div>
-        <div class="signup-container" style="display:none"> <!-- the signup feature container -->
+        <div class="signup-container" style="display:none"> <!-- the signup feature container -->   
             <form class="signup-form">
-                <label for="name">Firstname:</label>
+                <div class="signup-header-container">
+                    <h1 class="signup-header">Sign up</h1>
+                </div>
+                <label for="name-input">Firstname:</label>
                 <input type="text" placeholder="Firstname" class="firstname-input" id="firstname-input" required>
-                <label for="lastname">lastname:</label>
+                <label for="lastname-input">Lastname:</label>
                 <input type="text" placeholder="Lastname" class="lastname-input" id="lastname-input" required>
-                <label for="email-input">Email</label>
+                <label for="email-input">Email:</label>
                 <input type="email" placeholder="one@example.com" class="email-signup-input" id="email-signup-input" required>
-                <label for="password-input"></label>
+                <label for="password-input">Password:</label>
                 <input type="password" placeholder="..." class="password-signup-input" id="password-signup-input" required>
                 <button class="signup-button">Sign up</button>
+                <p>Trying to log in? <button class="login-redirection">Click here!</button></p>    
             </form>
-
+            
         </div>
         <div class="landing-page-container" style="display:none"> <!-- the landing page container -->
             <header class="landing-page-header">
-                <div class="landing-header-logo">LOGO
+                <div class="landing-header-logo">
                     <img src="./assets/cavetech.png" alt="the cavetech logo">
                 </div>
                 <div class="landing-header-menu">Menu</div>
-                <div class="landing-header-namedisplay">Profile Name</div>
+                <div class="landing-header-namedisplay"></div>
                 <button class="header-logout-button">Log out!</button>
             </header>
 
