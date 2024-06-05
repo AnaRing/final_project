@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* const signupButton = document.querySelector('.signup-button'); */
     const landingPage = document.querySelector('.landing-page-container');
     const logoutButton = document.querySelector('.logout-button');
+    const logoContainer = document.querySelector('.logo-container');
 
 
     // adding event listeners
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             await login(email, password);
             loginForm.reset();
-            loginForm.style.display = 'none';
+            loginContainer.style.display = 'none';
             landingPage.style.display = 'block';
         } catch (error) {
             console.error('Error logging in.', error.message);
@@ -89,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     logoutButton.addEventListener('click', async () => {
         try {
             await logout();
-            loginForm.style.display = 'block';
+            loginContainer.style.display = 'block';
             landingPage.style.display = 'none';
         } catch(error) {
             console.log('Error logging out.', error.message);

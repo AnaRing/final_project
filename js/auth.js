@@ -1,6 +1,6 @@
 // auth javascript file
 
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "./firebase";
 
 export async function signup(firstname, lastname, email, password) {

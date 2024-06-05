@@ -8,8 +8,12 @@
         <link rel="stylesheet" href="./css/styles.css">
     </head>
     <body>
-        <div class="logo-container">LOGO</div> <!-- adding logo later -->
+        
         <div class="login-container"> <!-- the login feature container -->
+            <div class="logo-container">
+            <img src="./assets/cavetech.png" alt="the cavetech logo">
+            </div> <!-- adding logo later -->
+            <div class="login-content-container">
             <h1 class="main-header">Welcome!</h1>
             <form class="login-form">
                 <label for="email-input">E-mail</label>
@@ -20,7 +24,7 @@
             </form>
             <p>Dont have an account?</p>
             <button class="signup-redirection">Sign up here!</button>
-            
+            </div>
         </div>
         <div class="signup-container" style="display:none"> <!-- the signup feature container -->
             <form class="signup-form">
@@ -38,7 +42,9 @@
         </div>
         <div class="landing-page-container" style="display:none"> <!-- the landing page container -->
             <header class="landing-page-header">
-                <div class="landing-header-logo">LOGO</div>
+                <div class="landing-header-logo">LOGO
+                    <img src="./assets/cavetech.png" alt="the cavetech logo">
+                </div>
                 <div class="landing-header-menu">Menu</div>
                 <div class="landing-header-namedisplay">Profile Name</div>
                 <button class="header-logout-button">Log out!</button>
