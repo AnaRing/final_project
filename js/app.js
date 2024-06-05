@@ -100,22 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Error logging out.')
         }
     });
-        /* logout()
-        .then(() => {
-            loginForm.style.display = 'block';
-            landingPage.style.display = 'none';
-        })
-        .catch((error) => {
-            console.log('Error logging out.', error.message);
-        });
-    }); */
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            console.log('User object:', user)
             const displayName = user.displayName;
             document.querySelector('.landing-header-namedisplay').textContent = displayName;
-            console.log('Display name:', user);
 
             loginContainer.style.display = 'none';
             landingPage.style.display = 'block';
