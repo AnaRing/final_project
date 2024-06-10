@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Final Project</title> <!-- mock title -->
+        <title>LifeQuotes</title> <!-- mock title -->
         <link rel="stylesheet" href="./css/reset.css">
         <link rel="stylesheet" href="./css/styles.css">
     </head>
@@ -11,8 +11,8 @@
         
         <div class="login-container"> <!-- the login feature container -->
             <div class="logo-container">
-            <img src="./assets/cavetech.png" alt="the cavetech logo">
-            </div> <!-- adding logo later -->
+            <h2 class="logo-text">LifeQuotes</h2>
+            </div>
             <div class="login-content-container">
             <h1 class="main-header">Welcome!</h1>
             <form class="login-form">
@@ -47,16 +47,20 @@
         <div class="landing-page-container" style="display:none"> <!-- the landing page container -->
             <header class="landing-page-header">
                 <div class="landing-header-logo">
-                    <img src="./assets/cavetech.png" alt="the cavetech logo">
+                    <h2 class="header-logo-text">LifeQuotes</h2>
                 </div>
-                <div class="landing-header-menu">Menu</div>
                 <div class="landing-header-namedisplay"></div>
                 <button class="logout-button">Log out!</button>
             </header>
-
+            <div class="quote-display-header">
+                <h2 class="quote-header-text">Quotes</h2>
+                <input type="text" placeholder="Search for a quote or author" class="search-input">
+                <button class="search-button">Search</button>
+            </div>
+            <div class="quote-display-container"></div>
+            </div>
         </div>
-        <div class="landing-user-display"></div>
-        <div></div>
+        
         <script src="./js/bundle.js"></script>
     </body>
 </html>
