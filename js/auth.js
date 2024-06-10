@@ -1,13 +1,12 @@
-// auth javascript file
+// auth.js file
 
-import { createUserWithEmailAndPassword, updateProfile, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "./firebase";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 // signup function, userprofile creation and doc collection for users
 
 export async function signup(firstname, lastname, email, password) {
-    const auth = getAuth();
     const db = getFirestore();
 
     try {
@@ -37,9 +36,11 @@ export function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password) 
         .then((userCredential) => {
             console.log('Logged in:', userCredential.user);
+            return userCredential; // Return the userCredential
         })
         .catch((error) => {
             console.error('Error logging in:', error);
+            throw error;
         });
     }
 
@@ -52,6 +53,6 @@ export function logout(){
     })
     .catch((error) => {
         console.error('Error', error);
+        throw error;
     })
 }
-

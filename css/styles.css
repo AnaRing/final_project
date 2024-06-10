@@ -127,7 +127,7 @@ p {
 /* sign-up styles */
 
 .signup-container {
-    margin-top: 10.28125rem;
+    margin-top: 5.28125rem;
     margin-bottom: 10.28125rem;
     display: flex;
     flex-direction: column;
@@ -267,11 +267,12 @@ p {
     background-color: white;
 }
 
+/* quote display styles */
+
 .quote-display-header {
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 80vw;
     height: 4.25rem;
     flex-shrink: 0;
@@ -279,6 +280,7 @@ p {
     border: 1px solid #000;
     background: #3D3F57;
     margin: 1.25rem auto 0;
+    padding: 0 1rem;
 }
 
 .quote-header-text {
@@ -289,6 +291,31 @@ p {
     font-weight: 400;
     line-height: normal;
 }
+
+.search-input {
+    width: 16.25rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    border-radius: 0.3125rem;
+    border: 1px solid #000;
+    background: #D9D9D9;
+    box-shadow: 0px 0.25rem 0.25rem 0px rgba(0, 0, 0, 0.25) inset;
+    margin-right: 1rem;
+}
+
+.search-button {
+    width: 6rem;
+    height: 2.5rem;
+    border-radius: 0.3125rem;
+    background-color: #FFF;
+    border: 1px solid #000;
+}
+
+.search-button:hover {
+    color: white;
+    background-color:#545775;
+}
+
 
 .quote-display-container {
     display: flex; 
@@ -313,33 +340,4 @@ p {
     background: #D9D9D9;
     padding: 1rem;
     margin-bottom: 0.5rem;
-}
-
-.search-input {
-    width: 16.25rem;
-    height: 2.5rem;
-    flex-shrink: 0;
-    border-radius: 0.3125rem;
-    border: 1px solid #000;
-    background: #D9D9D9;
-    box-shadow: 0px 0.25rem 0.25rem 0px rgba(0, 0, 0, 0.25) inset;
-}
-
-.search-display-container {
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: space-evenly;  
-}
-
-.search-button {
-    width: 4.53rem;
-    height: 1.68rem;
-    border-radius: 0.3125rem;
-    background-color: white;
-}
-
-.search-button:hover {
-    color: white;
-    background: rgba(84, 87, 117, 0.50)
 }

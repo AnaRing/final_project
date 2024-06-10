@@ -1,10 +1,12 @@
+// main javascript file
+
 import { onAuthStateChanged } from 'firebase/auth';
 import { login, logout, signup } from './auth';
-import '../css/styles.css';
-
-// Initialize Firebase auth
 import { getAuth } from 'firebase/auth';
+
+// initialize Firebase auth
 const auth = getAuth();
+
 
 // API URLs
 const QUOTE_API_URL = 'https://zenquotes.io/api/quotes';
@@ -95,23 +97,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const lastname = document.querySelector('#lastname-input').value;
         const email = document.querySelector('#email-signup-input').value;
         const password = document.querySelector('#password-signup-input').value;
-
+    
         // Check if email format is valid
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             alert('Invalid email format.');
             return;
         }
-
+    
         try {
             await signup(firstname, lastname, email, password);
             signupForm.reset();
             signupContainer.style.display = 'none';
+            landingPage.style.display = 'none';
             loginContainer.style.display = 'block';
         } catch (error) {
             alert('Error signing up: ' + error.message);
         }
     });
+    
 
     loginRedirection.addEventListener('click', () => {
         signupContainer.style.display = 'none';
