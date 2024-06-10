@@ -1,16 +1,16 @@
-import { documentId } from 'firebase/firestore';
-import '../css/styles.css';
 import { onAuthStateChanged } from 'firebase/auth';
 import { login, logout, signup } from './auth';
+import '../css/styles.css';
 
-// initialize firebase auth
+// Initialize Firebase auth
 import { getAuth } from 'firebase/auth';
 const auth = getAuth();
 
-// fetch the API using a CORS proxy
+// API URLs
 const QUOTE_API_URL = 'https://zenquotes.io/api/quotes';
-/* const QUOTE_TODAY_URL = 'https://zenquotes.io/api/today'; */
+const QUOTE_TODAY_URL = 'https://zenquotes.io/api/today';
 
+// Fetch quotes by author
 async function fetchQuotesByAuthor(author) {
     try {
         const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(QUOTE_API_URL)}`);
@@ -19,25 +19,25 @@ async function fetchQuotesByAuthor(author) {
         }
         const data = await response.json();
         const quotes = JSON.parse(data.contents);
-        // Filter quotes by the given author
-        const authorQuotes = quotes.filter(quote => quote.a.toLowerCase().includes(author.toLowerCase()));
-        return authorQuotes;
+        console.log('Fetched quotes:', quotes); // Debugging line
+
+        // Filter quotes by author, case insensitive
+        const filteredQuotes = quotes.filter(quote => quote.a.toLowerCase().includes(author.toLowerCase()));
+        console.log('Filtered quotes:', filteredQuotes); // Debugging line
+        return filteredQuotes;
     } catch (error) {
         console.error('Error fetching quotes by author.', error);
         return [];
     }
 }
 
-// function to search for quotes by author
-async function searchQuotesByAuthor(author) {
-    return await fetchQuotesByAuthor(author);
-}
-
-// display quotes in UI
+// Display quotes in UI
 function displayQuotes(quotes) {
-    console.log('Quotes:', quotes); 
-
     const quotesContainer = document.querySelector('.quote-display-container');
+    if (!quotesContainer) {
+        console.error('Quotes container not found.');
+        return;
+    }
     quotesContainer.innerHTML = '';
     if (quotes && quotes.length > 0) {
         quotes.forEach(quoteObj => {
@@ -50,30 +50,19 @@ function displayQuotes(quotes) {
     }
 }
 
-async function displayQuoteAndSearch() {
+// Display today's quote
+async function displayTodayQuote() {
     try {
-        const response = await fetch(QUOTE_API_URL);
+        const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(QUOTE_TODAY_URL)}`);
         if (!response.ok) {
-            throw new Error('Failed to fetch quotes.');
+            throw new Error('Failed to fetch today\'s quote.');
         }
         const data = await response.json();
-    
-        const today = new Date().toISOString().slice(0, 10);
-        const todayQuote = data.find(quote => quote.date.slice(0, 10) === today);
-
-        if (!todayQuote) {
-            throw new Error('Today\'s quote not found.');
-        }
-
-        const quoteDisplay = document.querySelector('.quote-display-container');
-        quoteDisplay.innerHTML = '';
-
-        const todayQuoteElement = document.createElement('div');
-        todayQuoteElement.textContent = `"${todayQuote.quote}" - ${todayQuote.author}`;
-        quoteDisplay.appendChild(todayQuoteElement);
-
+        const quoteData = JSON.parse(data.contents);
+        console.log('Today\'s quote:', quoteData); // Debugging line
+        displayQuotes(quoteData);
     } catch (error) {
-        console.error('Error displaying quote.', error);
+        console.error('Error displaying today\'s quote.', error);
     }
 }
 
@@ -88,14 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginRedirection = document.querySelector('.login-redirection');
     const searchButton = document.querySelector('.search-button');
     const searchInput = document.querySelector('.search-input');
-    
+
     loginContainer.style.display = 'block';
     signupContainer.style.display = 'none';
     landingPage.style.display = 'none';
 
-    // adding event listeners
+    // Add event listeners
     signupRedirection.addEventListener('click', () => {
-        console.log('Signup button clicked.');
         loginContainer.style.display = 'none';
         landingPage.style.display = 'none';
         signupContainer.style.display = 'block';
@@ -108,43 +96,36 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.querySelector('#email-signup-input').value;
         const password = document.querySelector('#password-signup-input').value;
 
-        // check if email format is valid
+        // Check if email format is valid
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         if (!emailRegex.test(email)) {
-            console.error('Invalid email format.');
             alert('Invalid email format.');
             return;
         }
-        
+
         try {
             await signup(firstname, lastname, email, password);
             signupForm.reset();
             signupContainer.style.display = 'none';
-            landingPage.style.display = 'none';
             loginContainer.style.display = 'block';
         } catch (error) {
-            console.log('Error signing up.', error.message);
-            alert('Error signing up.');
+            alert('Error signing up: ' + error.message);
         }
     });
-    
+
     loginRedirection.addEventListener('click', () => {
         signupContainer.style.display = 'none';
-        landingPage.style.display = 'none';
         loginContainer.style.display = 'block';
     });
 
     loginForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const email = event.target.querySelector('#email-login-input').value;
-        const password = event.target.querySelector('#password-login-input').value;
+        const email = document.querySelector('#email-login-input').value;
+        const password = document.querySelector('#password-login-input').value;
 
-        // check if email format is valid
+        // Check if email format is valid
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         if (!emailRegex.test(email)) {
-            console.error('Invalid email format.');
             alert('Invalid email format.');
             return;
         }
@@ -154,10 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
             loginForm.reset();
             loginContainer.style.display = 'none';
             landingPage.style.display = 'block';
-            displayQuotes([]);
+            await displayTodayQuote();
         } catch (error) {
-            console.error('Error logging in.', error.message);
-            alert('Error logging in.');
+            alert('Error logging in: ' + error.message);
         }
     });
 
@@ -167,21 +147,19 @@ document.addEventListener('DOMContentLoaded', () => {
             loginContainer.style.display = 'block';
             landingPage.style.display = 'none';
         } catch (error) {
-            console.log('Error logging out.', error.message);
-            alert('Error logging out.');
+            alert('Error logging out: ' + error.message);
         }
     });
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            const displayName = user.displayName;
+            const displayName = user.displayName || 'User';
             document.querySelector('.landing-header-namedisplay').textContent = displayName;
-
             loginContainer.style.display = 'none';
             landingPage.style.display = 'block';
+            displayTodayQuote();
         } else {
             document.querySelector('.landing-header-namedisplay').textContent = '';
-
             loginContainer.style.display = 'block';
             landingPage.style.display = 'none';
         }
@@ -189,8 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchButton.addEventListener('click', async () => {
         const searchTerm = searchInput.value;
-        const searchResults = await searchQuotesByAuthor(searchTerm);
+        console.log('Searching for author:', searchTerm); // Debugging line
+        const searchResults = await fetchQuotesByAuthor(searchTerm);
         displayQuotes(searchResults);
-        displayQuoteAndSearch(searchResults);
     });
 });
